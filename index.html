@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="Simple JavaScript exercise">
+    <meta name="keywords" content="JavaScript, HTML, CSS">
+
+    <!-- Open Graph -->
+    <meta property="og:image" content="https://asmaa930.github.io/JS_Exercise_2/images/logo.png">
+    <meta property="og:title" content="JavaScript Exercise">
+    <meta property="og:description" content="A simple JavaScript exercise">
+    <meta property="og:site_name" content="JS_Exercise_2">
+    <meta property="og:url" content="https://asmaa930.github.io/JS_Exercise_2/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    <title>JS_Exercise_2</title>
+    <link rel="icon" type="image/x-icon" href="https://semicode.tech/build/assets/mini-logo-60a53067.png">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.responsive.css">
+
+    <!-- (defer) tells the browser to download the script in parallel with HTML parsing, 
+         but not execute it until the HTML is fully parsed and the DOM is built -->
+
+    <!-- Script -->
+    <script src="js/bootstrap.js" defer></script>
+    <script src="js/functions.js" defer></script>
+    <script src="js/index.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- ? _____________________________________________ Registration _____________________________________________ -->
+
+    <section id="Registration" class="py-5">
+        <div class="container">
+
+            <div class="logo text-center mb-5">
+                <img src="images/logo.png" alt="logo" class="img-fluid">
+            </div>
+
+            <div class="register-form p-4">
+
+                <!--*____________________________________ -->
+
+                <div class="reset d-none" onclick=" resetBtns();resetForm()">
+                    <i class="fa-solid fa-rotate-left reset-icon"></i>
+                </div>
+
+                <!--*____________________________________ -->
+                <div class="form-title text-center mb-4">
+                    <h2>Students System</h2>
+                </div>
+
+                <!--*____________________________________ -->
+                <form method="get" data-type="add">
+
+                    <!-- -------- FirstName --------- -->
+                    <div class="box input-group mb-3">
+                        <label class="input-group-text" for="FirstName"><i class="fa-solid fa-user"></i></label>
+                        <input type="text" name="firstName" class="form-control" id="FirstName"
+                            placeholder="First Name *" aria-label="FirstName" minlength="3" maxlength="20"
+                            onblur="checkInput(this);showResetIcon(this)" data-empty="true">
+                    </div>
+                    <p class="alert alert-danger d-none mb-4" role="alert" data-error-name="firstName"></p>
+
+                    <!-- --------- LastName -------- -->
+                    <div class="box input-group mb-3">
+                        <label class="input-group-text" for="LastName"><i class="fa-solid fa-user"></i></label>
+                        <input type="text" name="lastName" class="form-control" id="LastName" placeholder="Last Name *"
+                            aria-label="LastName" minlength="3" maxlength="20"
+                            onblur="checkInput(this);showResetIcon(this)" data-empty="true">
+                    </div>
+                    <p class="alert alert-danger d-none mb-4" role="alert" data-error-name="lastName"></p>
+
+                    <!-- --------- Email -------- -->
+                    <div class="box input-group mb-3">
+                        <label class="input-group-text" for="Email"><i class="fa-solid fa-envelope"></i></label>
+                        <input type="email" name="email" class="form-control" id="Email" placeholder="Email *"
+                            aria-label="Email" onblur="checkInput(this);showResetIcon(this)" data-empty="true">
+                    </div>
+                    <p class="alert alert-danger d-none mb-4" role="alert" data-error-name="email"></p>
+
+                    <!-- -------- Age --------- -->
+                    <div class="box input-group mb-3">
+                        <label class="input-group-text" for="Age"><i class="fa-solid fa-hashtag"></i></label>
+                        <input type="number" min="10" max="50" name="age" class="form-control" id="Age"
+                            placeholder="Age *" aria-label="Age" onblur="checkInput(this);showResetIcon(this)"
+                            data-empty="true">
+                    </div>
+                    <p class="alert alert-danger d-none mb-4" role="alert" data-error-name="age"></p>
+
+                    <!-- -------- Phone --------- -->
+                    <div class="box input-group mb-3">
+                        <label class="input-group-text" for="Phone"><i class="fa-solid fa-mobile"></i></label>
+                        <input type="tel" name="phone" class="form-control" id="Phone" placeholder="Phone *"
+                            aria-label="Phone" onblur="checkInput(this);showResetIcon(this)" data-empty="true">
+                    </div>
+                    <p class="alert alert-danger d-none mb-4" role="alert" data-error-name="phone"></p>
+
+                    <!-- -------- submit --------- -->
+                    <div class="box">
+                        <button type="submit" class="btn w-100 btn-submit">
+                            <i class="fa-solid fa-user-plus me-2"></i>Add
+                        </button>
+                    </div>
+                    <p class="alert alert-danger d-none mt-3" role="alert" data-error-name="submit"></p>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ? _____________________________________________ Search _____________________________________________ -->
+
+    <section id="Search">
+        <div class="container">
+            <div class="box input-group">
+                <label class="input-group-text" for="SearchInput"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input type="text" name="search" class="form-control" id="SearchInput" placeholder="Search..."
+                    aria-label="Search">
+            </div>
+        </div>
+    </section>
+
+    <!-- ? _____________________________________________ Students _____________________________________________ -->
+
+    <section id="Students" class="py-5">
+        <div class="container">
+            <p class="alert alert-warning text-center mb-4" role="alert" data-alert="table">
+                There are no students</p>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Phone</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <button class="btn-delete-all btn mt-4 d-none" onclick="confirmDeleteAllStudents()">
+                <i class="fa-solid fa-user-minus me-2"></i> Delete All Students
+            </button>
+
+        </div>
+    </section>
+
+    <!-- ? _____________________________________________ popup _____________________________________________ -->
+
+    <div id="Popup" class="d-none">
+        <div class="box">
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

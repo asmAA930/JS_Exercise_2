@@ -1,0 +1,27 @@
+:root {
+    --first-color:#FFF3CD;
+    --second-color:#A77D40;
+    --third-color:#243b55;
+    --fourth-color:#6a89ce;
+    --fifth-color:#df7c7c;
+
+    --main-gradient:linear-gradient(to right, var(--first-color), var(--second-color));
+    --bg-gradient: linear-gradient(to right, var(--third-color), #141e30);
+}
+
+body {
+    background: var(--bg-gradient);
+}
+
+.box label {
+    cursor: pointer;
+}
+
+.box label i {
+    color: var(--second-color);
+}
+
+.box input:focus {
+    box-shadow: 0 0 2px 2px var(--second-color);
+    border: 0;
+}

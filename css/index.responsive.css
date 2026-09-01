@@ -1,0 +1,84 @@
+@media (max-width: 1300px) {
+    /*? _________________________ Registration _________________________ */
+    #Registration .container .logo img {
+        max-width: 100px;
+    }
+
+    #Registration .container .register-form {
+        max-width: 300px;
+    }
+
+    /*? _________________________ Search _________________________ */
+    #Search .container .box {
+        max-width: 250px;
+    }
+
+    /*? _________________________ Students _________________________ */
+    #Students .container button.btn-delete-all {
+        width: 250px;
+        font-size: 16px;
+        letter-spacing: 0px;
+    }
+
+    /* ? _________________________ Popup _________________________ */
+    #Popup .box {
+        width: 300px;
+    }
+}
+
+/*! __________________________________________________________________ */
+
+@media (min-width: 371px) and (max-width: 1300px) {
+
+    /*? _________________________ Registration _________________________ */
+    #Registration .container .register-form {
+        max-width: 350px;
+    }
+
+    /*? _________________________ Search _________________________ */
+    #Search .container .box {
+        max-width: 280px;
+    }
+
+    /*? _________________________ Students _________________________ */
+    #Students .container button.btn-delete-all {
+        width: 280px;
+    }
+
+    /* ? _________________________ Popup _________________________ */
+    #Popup .box {
+        width: 350px;
+    }
+}
+
+/*! __________________________________________________________________ */
+
+@media (min-width: 577px) and (max-width: 1300px) {
+
+    /*? _________________________ Registration _________________________ */
+    #Registration .container .logo img {
+        max-width: 100%;
+    }
+
+    #Registration .container .register-form {
+        max-width: 500px;
+    }
+
+    /*? _________________________ Search _________________________ */
+    #Search .container .box {
+        max-width: 400px;
+    }
+
+    /*? _________________________ Students _________________________ */
+
+    #Students .container button.btn-delete-all {
+        width: 400px;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    /* ? _________________________ Popup _________________________ */
+    #Popup .box {
+        width: 400px;
+    }
+}
