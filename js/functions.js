@@ -103,17 +103,22 @@ function checkInput(input) {
         isExistPhone = false,
         existId;
 
-    if ((inputName == "email" || inputName == "phone") && (form.getAttribute('data-type') == 'add')) {
+    if (inputName == "email" || inputName == "phone") {
 
-        students.forEach(function (student) {
-            if (student.email == inputValue) {
+        for (let student of students) {
+
+            if (form.getAttribute('data-type') == 'edit' && form.dataset.studentId == student.id) {
+                continue;
+
+            } else if (student.email == inputValue) {
                 isExistEmail = true;
                 existId = student.id;
+                
             } else if (student.phone == inputValue) {
                 isExistPhone = true;
                 existId = student.id;
             }
-        });
+        };
     }
 
     if (isEmpty) {
@@ -252,12 +257,6 @@ function insertStudentIntoForm(id, btnEdit) {
         btnSubmit = document.querySelector(".btn-submit"),
         backGroundBtnEdit;
 
-    inputs.forEach(function (input) {
-        input.value = editStudent[input.name];
-        input.dataset.empty = "false";
-        showResetIcon(input);
-    });
-
     btnSubmit.innerHTML = btnEdit.innerHTML;
     backGroundBtnEdit = getComputedStyle(btnEdit).background;
     btnSubmit.style.background = backGroundBtnEdit;
@@ -272,6 +271,13 @@ function insertStudentIntoForm(id, btnEdit) {
     // element.setAttribute('disabled', ' ');
     btnEdit.setAttribute('disabled', 'disabled');
     btnEdit.nextElementSibling.setAttribute('disabled', 'true');
+
+    inputs.forEach(function (input) {
+        input.value = editStudent[input.name];
+        input.dataset.empty = "false";
+        showResetIcon(input);
+        checkInput(input);
+    });
 }
 
 //! _________________________________________
