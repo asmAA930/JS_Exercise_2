@@ -173,7 +173,7 @@ function resetBtns() {
         btnSubmit.style.removeProperty("color");
 
 
-        let btnEdit = document.querySelector(".buttons .btn-edit[disabled]");
+        let btnEdit = tableBody.querySelector(".buttons .btn-edit[disabled]");
         btnEdit.removeAttribute('disabled');
         btnEdit.nextElementSibling.removeAttribute('disabled');
     }
@@ -220,6 +220,10 @@ function updateTableState(studentsData) {
 
 //! _________________________________________
 function deleteAll() {
+    if (form.dataset.type == 'edit') {
+        resetEle.onclick();
+    }
+    
     students = [];
     updateLocalStorage();
     tableBody.innerHTML = "";
