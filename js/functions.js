@@ -183,6 +183,10 @@ function resetBtns() {
         let btnEdit = tableBody.querySelector(".buttons .btn-edit[disabled]");
         btnEdit.removeAttribute('disabled');
         btnEdit.nextElementSibling.removeAttribute('disabled');
+
+        searchInput.removeAttribute('disabled');
+        searchInput.previousElementSibling.removeAttribute("style");
+        searchInput.previousElementSibling.firstElementChild.classList.remove("text-secondary");
     }
 }
 
@@ -293,6 +297,10 @@ function insertStudentIntoForm(id, btnEdit) {
     // element.setAttribute('disabled', ' ');
     btnEdit.setAttribute('disabled', 'disabled');
     btnEdit.nextElementSibling.setAttribute('disabled', 'true');
+
+    searchInput.setAttribute('disabled', 'true');
+    searchInput.previousElementSibling.style.cursor = "auto";
+    searchInput.previousElementSibling.firstElementChild.classList.add("text-secondary");
 
     inputs.forEach(function (input) {
         input.value = editStudent[input.name];
