@@ -94,9 +94,8 @@
                     <!-- -------- Age --------- -->
                     <div class="box input-group mb-3">
                         <label class="input-group-text" for="Age"><i class="fa-solid fa-hashtag"></i></label>
-                        <input type="number" min="10" max="50" name="age" class="form-control" id="Age"
-                            placeholder="Age *" aria-label="Age" onblur="checkInput(this);showResetIcon(this)"
-                            data-empty="true">
+                        <input type="number" name="age" class="form-control" id="Age" placeholder="Age *"
+                            aria-label="Age" onblur="checkInput(this);showResetIcon(this)" data-empty="true">
                     </div>
                     <p class="alert alert-danger d-none mb-4" role="alert" data-error-name="age"></p>
 
@@ -114,7 +113,6 @@
                             <i class="fa-solid fa-user-plus me-2"></i>Add
                         </button>
                     </div>
-                    <p class="alert alert-danger d-none mt-3" role="alert" data-error-name="submit"></p>
 
                 </form>
             </div>
@@ -138,11 +136,9 @@
 
     <section id="Students" class="py-5">
         <div class="container">
-            <p class="alert alert-warning text-center mb-4" role="alert" data-alert="table">
-                There are no students</p>
 
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -154,7 +150,13 @@
                             <th>Option</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <tr>
+                            <td colspan="7" class="alert border-0 table-warning text-center m-0" role="alert"
+                                data-alert="table">
+                                There are no students</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
 
