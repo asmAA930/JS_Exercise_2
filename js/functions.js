@@ -4,7 +4,7 @@ function getStudent(id) {
 
     inputs.forEach(function (input) {
         let inputName = input.name,
-            inputValue = input.value;
+            inputValue = input.value.trim();
         student[inputName] = inputValue;
     });
 
