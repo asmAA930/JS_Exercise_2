@@ -5,7 +5,7 @@
     margin-inline: auto;
 
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border-radius: 10px;
     border: 1px solid var(--first-color);
 
@@ -35,16 +35,19 @@
     font-weight: 600;
     vertical-align: baseline;
     letter-spacing: 2px;
-    transition: 0.5s;
+
+    transform: translateZ(0) scale(1);
+    transition: transform 0.3s ease;
+}
+
+#Registration .container .register-form form .box button:hover {
+    transform: translateZ(0) scale(1.03);
 }
 
 #Registration .container .register-form form .box button i {
     font-size: initial;
 }
 
-#Registration .container .register-form form .box button:hover {
-    transform: scale(1.03);
-}
 
 /* ? _____________________________________________ Search _____________________________________________ */
 
@@ -55,25 +58,25 @@
 
 /* ? _____________________________________________ Students _____________________________________________ */
 
-#Students .container .alert {
-    font-size: 18px;
-}
-
 #Students .container .table-responsive {
     border-radius: 10px;
-    border: 4px solid rgba(255, 255, 255, 0.5);
+    border: 4px solid rgba(255, 255, 255, 0.6);
 }
 
 #Students .container .table-responsive table {
     width: max-content;
     min-width: 100%;
     margin: 0;
+}
+
+#Students .container .table-responsive table tr:nth-of-type(even){
     --bs-table-striped-bg: #c9ddff93;
+    --bs-table-bg-type: var(--bs-table-striped-bg)
 }
 
 #Students .container .table-responsive table thead {
     --bs-table-color: #fff;
-    --bs-table-bg:  var(--third-color);
+    --bs-table-bg: var(--third-color);
 }
 
 #Students .container .table-responsive table tr th,
@@ -82,14 +85,20 @@
     vertical-align: middle;
 }
 
-#Students .container .table-responsive table tr td button {
-    border: none;
-    transition: 0.3s;
+#Students .container .table-responsive table tbody tr .alert {
+    font-size: 17px;
+    border-radius: 0;
 }
 
-#Students .container .table-responsive table tr td button:hover,
-#Students .container button.btn-delete-all:hover {
-    transform: scale(1.05);
+#Students .container .table-responsive table tr td button {
+    border: none;
+
+    transform: translateZ(0) scale(1);
+    transition: transform 0.3s ease;
+}
+
+#Students .container .table-responsive table tr td button:hover {
+    transform: translateZ(0) scale(1.05);
 }
 
 #Students .container .table-responsive table tr td button:first-child {
@@ -105,12 +114,17 @@
     width: 400px;
     margin: auto;
     display: block;
-    transition: 0.3s;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 1px;
+
+    transform: translateZ(0) scale(1);
+    transition: transform 0.3s ease;
 }
 
+#Students .container button.btn-delete-all:hover {
+    transform: translateZ(0) scale(1.03);
+}
 
 /* ? _____________________________________________ Popup _____________________________________________ */
 
@@ -118,6 +132,7 @@
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 100;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -136,7 +151,7 @@
 }
 
 #Popup .box {
-    background:  var(--third-color);
+    background: var(--third-color);
     width: 400px;
     border-radius: 10px;
     border: 4px solid rgba(255, 255, 255, 0.5);
