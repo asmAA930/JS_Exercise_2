@@ -15,10 +15,12 @@ function getStudent(id) {
 function addStudent() {
     let student = getStudent(++id);
     students.push(student);
+
     updateLocalStorage();
+    showStudent(student);
     updateTableState(students);
 
-    showStudent(student);
+    localStorage.setItem("largestId", `${student.id}`);
 }
 
 //! _________________________________________
@@ -30,9 +32,6 @@ function editStudent() {
         trStudent = tableBody.querySelector(`tr[data-student-${studentId}]`);
 
     students[studentIndex] = student;
-
-    console.log(student);
-    console.log(students);
 
     trStudent.innerHTML = `
         <th>${student.id}</th>
@@ -76,7 +75,6 @@ function showStudent(student) {
                 <div class="buttons">
                     <button class="btn btn-edit me-3" onclick='insertStudentIntoForm(${student.id},this)'><i class="fa-solid fa-user-pen"></i> Edit</button>
                     <button class="btn" onclick='confirmDeleteStudentById(${student.id},this)'><i class="fa-solid fa-user-minus"></i> Delete</button>
-                    
                 </div>
             </td>
         </tr>
@@ -85,7 +83,14 @@ function showStudent(student) {
 
 //! _________________________________________
 function showAllStudents(studentData) {
-    tableBody.innerHTML = "";
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="7" class="alert border-0 table-warning text-center m-0" role="alert"
+                data-alert="table">
+                There are no students
+            </td>
+        </tr>
+    `;
     studentData.forEach(function (student) {
         showStudent(student);
     });
@@ -113,7 +118,7 @@ function checkInput(input) {
             } else if (student.email == inputValue) {
                 isExistEmail = true;
                 existId = student.id;
-                
+
             } else if (student.phone == inputValue) {
                 isExistPhone = true;
                 existId = student.id;
@@ -124,14 +129,17 @@ function checkInput(input) {
     if (isEmpty) {
         alertInputMsg = "This field is required.";
 
+    } else if ((inputName == "age") && isInvalid) {
+        alertInputMsg = "Invalid field. Age must be between 20 and 30.";
+
     } else if (isInvalid) {
-        alertInputMsg = "Invalid Field.";
+        alertInputMsg = "Invalid field.";
 
     } else if (isExistEmail) {
-        alertInputMsg = `This email already exists. The ID is ${existId}.`;
+        alertInputMsg = "This email already exists.";
 
     } else if (isExistPhone) {
-        alertInputMsg = `This phone already exists. The ID is ${existId}.`;
+        alertInputMsg = "This phone already exists.";
     }
 
     // ------------------------------
@@ -144,8 +152,8 @@ function checkInput(input) {
         input.classList.remove("is-valid");
 
         input.dataset.empty = false;
-    }
-    else if (isEmpty) {
+
+    } else if (isEmpty) {
         // inCorrect
         input.classList.add("is-invalid");
         alertInput.textContent = alertInputMsg;
@@ -172,7 +180,6 @@ function resetBtns() {
         btnSubmit.style.removeProperty("background");
         btnSubmit.style.removeProperty("color");
 
-
         let btnEdit = tableBody.querySelector(".buttons .btn-edit[disabled]");
         btnEdit.removeAttribute('disabled');
         btnEdit.nextElementSibling.removeAttribute('disabled');
@@ -191,10 +198,6 @@ function resetForm() {
         alertInput.textContent = "";
     });
 
-    let alertSubmit = form.querySelector("[data-error-name='submit']");
-    alertSubmit.classList.add("d-none");
-    alertSubmit.textContent = '';
-
     form.setAttribute('data-type', 'add');
     form.removeAttribute('data-student-id');
     resetEle.classList.add("d-none");
@@ -209,11 +212,18 @@ function updateLocalStorage() {
 
 //! _________________________________________
 function updateTableState(studentsData) {
+    tableAlert = document.querySelector("[data-alert='table']");
+
     if (studentsData.length == 0) {
-        alertTable.classList.remove("d-none");
+        tableAlert.classList.remove("d-none");
         btnDeleteAll.classList.add("d-none");
-    } else {
-        alertTable.classList.add("d-none");
+
+    } else if (studentsData.length == 1) {
+        tableAlert.classList.add("d-none");
+        btnDeleteAll.classList.add("d-none");
+
+    } else if (studentsData.length > 1) {
+        tableAlert.classList.add("d-none");
         btnDeleteAll.classList.remove("d-none");
     }
 }
@@ -223,10 +233,18 @@ function deleteAll() {
     if (form.dataset.type == 'edit') {
         resetEle.onclick();
     }
-    
+
     students = [];
     updateLocalStorage();
-    tableBody.innerHTML = "";
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="7" class="alert border-0 table-warning text-center m-0" role="alert"
+                data-alert="table">
+                There are no students
+            </td>
+        </tr>
+    `;
+
     updateTableState(students);
 }
 //! _________________________________________
@@ -307,7 +325,7 @@ function confirmDeleteStudentById(studentId, btnDeleteStudent) {
     <hr>
     <div class="buttons d-flex justify-content-end">
         <button class="btn me-3 btn-cancel btn-secondary ">Cancel</button>
-        <button class="btn btn-delete">Yes,Delete</button>
+        <button class="btn btn-delete">Yes, Delete</button>
     </div>
     `;
 
@@ -335,7 +353,7 @@ function confirmDeleteAllStudents() {
     <hr>
     <div class="buttons d-flex justify-content-end">
         <button class="btn me-3 btn-cancel btn-secondary ">Cancel</button>
-        <button class="btn btn-delete">Yes,Delete All</button>
+        <button class="btn btn-delete">Yes, Delete All</button>
     </div>
     `;
 
@@ -363,10 +381,9 @@ function confirmEditStudent() {
             <hr>
             <div class="buttons d-flex justify-content-end">
                 <button class="btn me-3 btn-cancel btn-secondary ">Cancel</button>
-                <button class="btn btn-edit">Yes,Save</button>
+                <button class="btn btn-edit">Yes, Save</button>
             </div>
             `;
-
 
     openPopup();
 
